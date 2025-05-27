@@ -1,0 +1,12 @@
+server:
+  port: ":8080"
+database:
+  host: "postgres" # Имя сервиса PostgreSQL в docker-compose
+  port: 5432
+  user: "budget_user"
+  password: "budget_password"
+  name: "budget_db"
+  sslmode: "disable"
+jwt:
+  secret: "your-secret-key" # Замените на безопасный ключ в продакшене
+  expiry_hours: 24
