@@ -1,0 +1,4 @@
+config/config.yaml
+logs/app.log
+.idea
+.env
