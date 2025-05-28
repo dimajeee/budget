@@ -5,7 +5,7 @@ import "time"
 type User struct {
 	ID       int    `json:"id"`
 	Username string `json:"username"`
-	Password string `json:"-"` // Не возвращаем пароль в JSON
+	Password string `json:"-"`
 	Email    string `json:"email"`
 }
 
@@ -14,7 +14,7 @@ type Transaction struct {
 	UserID   int       `json:"user_id"`
 	Date     time.Time `json:"date"`
 	Name     string    `json:"name"`
-	Category string    `json:"category"` // "income" или "expense"
+	Category string    `json:"category"`
 	Amount   float64   `json:"amount"`
 }
 
@@ -36,6 +36,6 @@ type PasswordResetRequest struct {
 type TransactionRequest struct {
 	Date     string  `json:"date" binding:"required"`
 	Name     string  `json:"name" binding:"required"`
-	Category string  `json:"category" binding:"required,oneof=income expense"`
+	Category string  `json:"category" binding:"required"`
 	Amount   float64 `json:"amount" binding:"required,gt=0"`
 }

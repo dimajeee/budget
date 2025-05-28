@@ -71,7 +71,7 @@ func Run(cfg *config.Config) error {
 	{
 		authorized.POST("/transactions", handlers.AddTransaction)
 		authorized.GET("/transactions/day/:date", handlers.GetTransactionsByDay)
-		authorized.GET("/api/transactions/period", handlers.GetTransactionsByPeriod)
+		authorized.GET("/transactions/period", handlers.GetTransactionsByPeriod)
 	}
 
 	// Запуск сервера

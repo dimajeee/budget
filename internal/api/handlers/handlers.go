@@ -134,7 +134,7 @@ func AddTransaction(c *gin.Context) {
 	}
 
 	userID, _ := c.Get("user_id")
-	date, err := time.Parse("2006-01-02", req.Date)
+	date, err := time.Parse("2025-05-01", req.Date)
 	if err != nil {
 		log.Warn().Err(err).Str("date", req.Date).Msg("Неверный формат даты")
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Неверный формат даты (ожидается YYYY-MM-DD)"})
@@ -142,7 +142,7 @@ func AddTransaction(c *gin.Context) {
 	}
 
 	_, err = db.DB.Exec("INSERT INTO transactions (user_id, date, name, category, amount) VALUES ($1, $2, $3, $4, $5)",
-		userID, date.Format("2006-01-02"), req.Name, req.Category, req.Amount)
+		userID, date.Format("2025-05-01"), req.Name, req.Category, req.Amount)
 	if err != nil {
 		log.Error().Err(err).Msg("Ошибка сохранения транзакции")
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Ошибка сохранения транзакции"})
@@ -157,7 +157,7 @@ func GetTransactionsByDay(c *gin.Context) {
 	userID, _ := c.Get("user_id")
 	date := c.Param("date")
 
-	_, err := time.Parse("2006-01-02", date)
+	_, err := time.Parse("2025-05-01", date)
 	if err != nil {
 		log.Warn().Err(err).Str("date", date).Msg("Неверный формат даты")
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Неверный формат даты (ожидается YYYY-MM-DD)"})
@@ -182,7 +182,7 @@ func GetTransactionsByDay(c *gin.Context) {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Ошибка чтения данных"})
 			return
 		}
-		t.Date, _ = time.Parse("2006-01-02", dateStr)
+		t.Date, _ = time.Parse("2025-05-01", dateStr)
 		transactions = append(transactions, t)
 	}
 
@@ -195,13 +195,13 @@ func GetTransactionsByPeriod(c *gin.Context) {
 	startDate := c.Query("start_date")
 	endDate := c.Query("end_date")
 
-	_, err := time.Parse("2006-01-02", startDate)
+	_, err := time.Parse("2025-05-01", startDate)
 	if err != nil {
 		log.Warn().Err(err).Str("start_date", startDate).Msg("Неверный формат даты")
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Неверный формат start_date (ожидается YYYY-MM-DD)"})
 		return
 	}
-	_, err = time.Parse("2006-01-02", endDate)
+	_, err = time.Parse("2025-05-01", endDate)
 	if err != nil {
 		log.Warn().Err(err).Str("end_date", endDate).Msg("Неверный формат даты")
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Неверный формат end_date (ожидается YYYY-MM-DD)"})
@@ -226,7 +226,7 @@ func GetTransactionsByPeriod(c *gin.Context) {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Ошибка чтения данных"})
 			return
 		}
-		t.Date, _ = time.Parse("2006-01-02", dateStr)
+		t.Date, _ = time.Parse("2025-05-01", dateStr)
 		transactions = append(transactions, t)
 	}
 
