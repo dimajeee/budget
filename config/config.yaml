@@ -1,0 +1,12 @@
+server:
+  port: ":8080"
+database:
+  host: "postgres"
+  port: 5432
+  user: "budget_user"
+  password: "budget_password"
+  name: "budget_db"
+  sslmode: "disable"
+jwt:
+  secret: "secret" 
+  expiry_hours: 24
