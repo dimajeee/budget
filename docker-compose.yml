@@ -1,6 +1,6 @@
 services:
   postgres:
-    image: postgres:latest
+    image: postgres:17.7
     environment:
       POSTGRES_USER: budget_user
       POSTGRES_PASSWORD: budget_password
